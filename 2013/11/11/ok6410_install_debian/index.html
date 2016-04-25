@@ -1,0 +1,397 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>OK6410安装Debian文件系统 | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="树莓派的raspbian用着很爽，于是想着在我的OK6410上面也能使用就好了，谷歌一下，发现还真的有不少人做到了，只需使用debootstrap构建一个根文件系统即可，果断开始折腾。
+首先你得有一个ubuntu或者debian系统，
+执行sudo apt-get install debootstr">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="OK6410安装Debian文件系统 | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/11/11/ok6410_install_debian/" title="OK6410安装Debian文件系统" itemprop="url">OK6410安装Debian文件系统</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-11-10T18:12:08.000Z" itemprop="datePublished">2013-11-11</time>
+    Updated:<time datetime="2014-09-07T05:07:22.250Z" itemprop="dateModified">2014-09-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>树莓派的raspbian用着很爽，于是想着在我的OK6410上面也能使用就好了，谷歌一下，发现还真的有不少人做到了，只需使用debootstrap构建一个根文件系统即可，果断开始折腾。</p>
+<p>首先你得有一个ubuntu或者debian系统，</p>
+<p>执行<code>sudo apt-get install debootstrap qemu-user-static</code></p>
+<p>注：debootstrap是debian的一个用于自己组建系统的工具</p>
+<p>qemu-user-static是防止平台差异（arm与i386）导致的无法chroot问题</p>
+<p>新建一个文件夹用来下载文件系统<code>mkdir debian_arm</code></p>
+<p><code>cd debian_arm</code><br><code>sudo debootstrap --arch=armel --foreign --include=vim,openssh-server squeeze rootfs/ http://ftp.us.debian.org/debian</code></p>
+<p>注：–arch是平台，–foreign是只下载解压缩不执行安装与设定，–include是添加自定义组件，还有–exclude不包含组件，squeeze是debian的版本号，rootfs/是根目录路径，网址就是下载地址喽</p>
+<p>接着就是下载漫长的等待下载了，大概会下载一百多兆</p>
+<p><code>cd debian_arm</code><br><code>sudo cp /usr/bin/qemu-arm-static rootfs/user/bin/qemu-arm-static</code>(不复制会报错，平台差异问题)<br><code>sudo chroot rootfs</code></p>
+<p>这个时候就以root身份进入新的文件系统了</p>
+<p>执行套件的安装与设定：</p>
+<p><code>/debootstrap/debootstrap –second-stage</code></p>
+<p>又需要等待一会。。。</p>
+<p>修改apt-get源</p>
+<p><code>echo&quot;/deb http://ftp.us.debian.org/debian squeeze main&quot; &amp;gt;etc/apt/sources.list</code></p>
+<p>配置网络：</p>
+<p><code>vi /etc/network/interfaces</code></p>
+<p>输入</p>
+<p><code>auto lo</code><br><code>iface lo inet loopback</code><br><code>iface eth0 inet static</code><br><code>address 192.168.137.7</code><br><code>netmask 255.255.255.0</code><br><code>gateway 192.168.137.2</code><br><code>iface default inet dhcp</code></p>
+<p>配置主机名：</p>
+<p><code>echo &quot;debian_ok6410&quot;&amp;gt;/etc/hostname</code></p>
+<p>配置串口：</p>
+<p><code>echo &quot;T0:123:respawn:/sbin/getty 115200 ttySAC0&quot;&amp;gt;&amp;gt;/etc/securetty</code><br><code>echo&quot;proc /proc proc none 0 0&quot; &amp;gt;&amp;gt; /etc/fstab</code><br><code>mkdir-p /usr/share/man/man1/</code><br><code>mknop /dev/console c 5 1(可能提示已存在)</code></p>
+<p>当然，千万不要忘记passwd给系统添加一个密码</p>
+<p>这就差不多了，如果还想再设置的话，比如<code>apt-get update 、remove、clean</code>之类的，</p>
+<p>也可以对系统清理下用不到的命令或者文件。此处省略1000字。。。</p>
+<p><code>exit</code>退出当前根文件系统</p>
+<p>准备一张sd卡，<code>fdisk /dev/sdb</code>分区为一个FAT（大小无所谓，自己感觉，不明原因，我感觉直接一个EXT3也可以，还未尝试），剩下的全部EXT3</p>
+<p><code>sudo mkfs.vfat /dev/sdb1</code><br><code>sudo mkfs.ext3 /dev/sdb2</code><br><code>mount /dev/sdb2 /media/udisk</code>（假设挂载此处）</p>
+<p>好了，现在将所有的文件拷贝到sd卡ext3分区</p>
+<p><code>cp -rp rootfs/* /media/udisk/</code></p>
+<p>卸载sd卡，安装到开发板</p>
+<p>接下来进入minicom，开发板上电，打断autoboot</p>
+<p>进入命令行模式</p>
+<p><code>printenv</code>查看当前uboot环境变量设置<br><code>setenv bootargs &quot;root=/dev/mmcblk0p1 console=ttySAC0,115200&quot;</code><br><code>saveenv</code>保存<br><code>reset</code>重启开发板</p>
+<p>接下来，如果不出意外，大概就会进入系统了，</p>
+<p>注：</p>
+<ol>
+<li><p>内核无法启动的，请重新编译内核，将ext3选中，话说我现在编译内核只需要10分钟，debian速度不错哦，以前ubuntu最少得三十分钟</p>
+</li>
+<li><p>不设置passwd又不设置自动登录是无法进入系统的</p>
+</li>
+<li><p>虽然安装debian内存占用很少，也没有安装桌面，但是单纯直接将系统制作为yaffs2会在启动的时候出错，显示无法分配内存，准备再精简下系统，或者使用emdebian</p>
+</li>
+<li><p>网卡无法识别的，请<code>cat /proc/net/dev</code>会发现网卡变成eth1了，这是由于chroot的时候保存了主机的eth0信息，现在的依序变成了eth1</p>
+</li>
+</ol>
+<p><code>vi /etc/udev/rules.d/70-persistent-net.rules</code></p>
+<p>将eth1改为eth0，将里面原本的eth0删去，reboot就好了(直接删除本文件也可，下次开机会自动生成)</p>
+<ol>
+<li>下一篇，无线网卡驱动安装</li>
+</ol>
+<p><span style="color: #ff0000;"><strong>11.22补充更新：</strong></span></p>
+<p>机身明明含4Gnand flash，为毛我还要用sd卡呢，多傻啊，可是那天我尝试将文件系统写入nand的时候，在启动过程的最后出现了存储不足，今天仔细的看了下，一直使用的是/dev/mtdblock2</p>
+<p>这个分区本身就只有200M左右，一个精简版的debian也比它大，所以问题就明显了。而/dev/mtdblock3却是3.9G左右，这难道还不够吗？果断将它作为分区啊。</p>
+<p>我是在电脑上将SD卡备份后再恢复到mtdblock3的，不管是复制也好，tar也好，只要能把文件系统完完整整的拷进去就算事。</p>
+<p>然后修改uboot参数</p>
+<p><code>setenv bootargs &quot;root=31:3 noinitrd console=ttySAC0,115200&quot;</code></p>
+<p>这里我使用了简写，<code>ls -l /dev/m*</code></p>
+<p>可以查看到id是31，而mtdblock3就是第三个了，同样适用于sd卡的时候即</p>
+<p><code>bootargs=root=179:2 noinitrd console=ttySAC0,115200</code></p>
+<p>接着reset重启开发板，没有意外的话会和之前从sd卡启动是一样的效果。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/11/11/ok6410_install_debian/" data-title="OK6410安装Debian文件系统 | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/11/rt5370_install_drive/" title="usb无线网卡rt5370驱动安装与移植">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  usb无线网卡rt5370驱动安装与移植</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/11/09/safe_of_chrome/"  title="恶意扩展程序列表及甄别办法">
+ <strong>NEXT:</strong><br/> 
+ <span>恶意扩展程序列表及甄别办法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,334 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>ubuntu中一键设置当前窗口环境变量的方法 | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="因为在电脑中安装了三个Qt版本。Qt5.0.1, Qt4.8.4, Qt4.7.1，在使用过程中，切换编译不同版本应用时，经常需要改变环境变量的设置，如果每次都在/etc/profile中设置会很麻烦，在命令行中每次输入又很繁琐，所以我选择了使用shell脚本：
+新建文档，命名qt4.7,
+我的Qt">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="ubuntu中一键设置当前窗口环境变量的方法 | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/04/13/use_source_ubuntu/" title="ubuntu中一键设置当前窗口环境变量的方法" itemprop="url">ubuntu中一键设置当前窗口环境变量的方法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-04-12T17:01:27.000Z" itemprop="datePublished">2013-04-13</time>
+    Updated:<time datetime="2014-09-07T05:04:32.008Z" itemprop="dateModified">2014-09-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>　　因为在电脑中安装了三个Qt版本。Qt5.0.1, Qt4.8.4, Qt4.7.1，在使用过程中，切换编译不同版本应用时，经常需要改变环境变量的设置，如果每次都在/etc/profile中设置会很麻烦，在命令行中每次输入又很繁琐，所以我选择了使用shell脚本：</p>
+<p>新建文档，命名qt4.7,</p>
+<p>我的Qt安装地址：/opt/qt4.7.1,以下均以此为例。</p>
+<p>脚本内容如下：</p>
+<p><code><br>! /bin/sh<br>export PATH=/opt/qt-4.7.1/bin:$PATH<br>export QTDIR=/opt/qt-4.7.1<br>export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH<br></code><br>保存后用sudo chmod 755 设置属性可执行。<br>然后执行sudo mv qt4.7 /bin/qt4.7<br>ctrl+alt+T 快捷键打开终端，执行source qt4.7  </p>
+<p>输入qmake -v查看qmake版本是否生效<br>输入echo $QTDIR查看路径是否正确</p>
+<p>若一切正常，那么就可以在当前shell窗口使用qt4.7了，不想使用当前路径及版本时，直接关闭当前终端另外打开一个就可以了。</p>
+<p>这个方法同样适用于其它需要经常修改环境变量的地方，不能使用./qt4.7直接运行程序，那样是无效的，程序运行后关闭自身并不会在父窗口生效。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/04/13/use_source_ubuntu/" data-title="ubuntu中一键设置当前窗口环境变量的方法 | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/04/16/Segmentation_fault/" title="关于“段错误 (核心已转储)”的错误">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  关于“段错误 (核心已转储)”的错误</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

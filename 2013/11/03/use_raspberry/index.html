@@ -1,0 +1,382 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>树莓派上手试玩 | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="树莓派终于到了，第一眼看到它，唯一的感觉就是小，小巧玲珑啊，一只手就可以完全握住。慌忙吃过饭，赶紧开始折腾吧。
+
+下载官方推荐的raspbian
+
+http://downloads.raspberrypi.org/raspbian_latest
+（500多兆，渣网速下载了一个多小时我会乱说？）
+
+解">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="树莓派上手试玩 | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/11/03/use_raspberry/" title="树莓派上手试玩" itemprop="url">树莓派上手试玩</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-11-03T03:55:24.000Z" itemprop="datePublished">2013-11-03</time>
+    Updated:<time datetime="2015-06-12T14:31:58.692Z" itemprop="dateModified">2015-06-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>树莓派终于到了，第一眼看到它，唯一的感觉就是小，小巧玲珑啊，一只手就可以完全握住。慌忙吃过饭，赶紧开始折腾吧。</p>
+<ol>
+<li>下载官方推荐的raspbian</li>
+</ol>
+<p><a href="http://downloads.raspberrypi.org/raspbian_latest" target="_blank" rel="external">http://downloads.raspberrypi.org/raspbian_latest</a></p>
+<p>（500多兆，渣网速下载了一个多小时我会乱说？）</p>
+<ol>
+<li><p>解压出img镜像</p>
+</li>
+<li><p>用win32diskimager将镜像写入SD卡</p>
+</li>
+<li><p>上电开机，用路由器连接树莓派，查看dhcp服务器列表，找到树莓派的IP地址</p>
+</li>
+<li><p>打开putty，输入IP地址，连接树莓派</p>
+</li>
+<li><p>执行sudo apt-get install tightvncserver，下载并设置tightvncserver</p>
+</li>
+<li><p>执行sudo raspi-config配置图形界面及语言、使用整张SD卡等</p>
+</li>
+<li><p>电脑端打开VNC-Viewer，输入IP，输入密码访问图形桌面，详细的安装可以看这里：<a href="http://bbs.shumeipai.org/thread-113-1-1.html" target="_blank" rel="external"></a></p>
+</li>
+</ol>
+<p>本来的顺序大概就这些，但在我这里遇到的最大的困难就是没有网络，当然手机可以访问互联网。用手机给电脑共享网络，企图使树莓派联网，折腾半天没搞定，最后还是祭出了大杀器——无线网卡，嘿嘿，一下子就连接上网了，</p>
+<p>这里顺便放两个链接：</p>
+<p><a href="http://mirror.nus.edu.sg/raspbian/raspbian/pool/main/x/xfonts-base/xfonts-base_1.0.3_all.deb" title="vnc依赖文件" target="_blank" rel="external">vnc依赖文件</a></p>
+<p><a href="http://mirror.nus.edu.sg/raspbian/raspbian/pool/main/t/tightvnc/tightvncserver_1.3.9-6.4_armhf.deb" title="vnc服务端" target="_blank" rel="external">vnc服务端</a></p>
+<p>安装完成后输入vnc</p>
+<p>这样既打开了ssh连接，又打开了vnc图形界面随便输入一些接着来几张预览图吧</p>
+<p>外观图一：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//DSC_0040.jpg" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//DSC_0040.jpg" alt=""></a></p>
+<p>外观图二：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//DSC_0039.jpg" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//DSC_0039.jpg" alt="DSC_0039"></a></p>
+<p>硬盘使用情况：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-03_201742.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-03_201742.png" alt="2013-11-03_201742"></a></p>
+<p>内存使用情况及文件挂载：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_175109.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_175109.png" alt="2013-11-01_175109"></a></p>
+<p>putty登录：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174204.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174204.png" alt="2013-11-01_174204"></a></p>
+<p>ssh命令界面：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174131.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174131.png" alt="2013-11-01_174131"></a></p>
+<p>vnc图形界面：</p>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174049.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201311//2013-11-01_174049.png" alt="2013-11-01_174049"></a></p>
+<p>呐，大概就这样了。。。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/11/03/use_raspberry/" data-title="树莓派上手试玩 | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/11/05/hide_run_goagent/" title="后台运行goagent 告别烦人的前台窗口">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  后台运行goagent 告别烦人的前台窗口</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/10/23/mrp/"  title="回忆MRP">
+ <strong>NEXT:</strong><br/> 
+ <span>回忆MRP
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

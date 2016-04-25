@@ -1,0 +1,334 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>尝试使用状态机的思想去编程 | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="大概是一个月前，因项目中键盘检测使用空操作延时去抖，效率很低。而且按下按键不松手会导致系统暂停。于是开始在网络上搜索解决方案。最终，发现了状态机：将程序分为N个部分，用状态标志位来处理每个时刻的动作。只有当条件激发下一动作时状态才会改变，否则不处理。状态机是介于操作系统和裸机编程之间的一种最佳处理方">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="尝试使用状态机的思想去编程 | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/09/27/try_to_use_FSM/" title="尝试使用状态机的思想去编程" itemprop="url">尝试使用状态机的思想去编程</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-09-27T12:35:41.000Z" itemprop="datePublished">2014-09-27</time>
+    Updated:<time datetime="2014-09-27T13:13:52.021Z" itemprop="dateModified">2014-09-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>　　大概是一个月前，因项目中键盘检测使用空操作延时去抖，效率很低。而且按下按键不松手会导致系统暂停。于是开始在网络上搜索解决方案。最终，发现了状态机：将程序分为N个部分，用状态标志位来处理每个时刻的动作。只有当条件激发下一动作时状态才会改变，否则不处理。状态机是介于操作系统和裸机编程之间的一种最佳处理方案，虽然有一点点的繁琐，但是相当可靠，效率很高。</p>
+<p>　　一般的书籍都是使用delay_ms(20)这种方式去完成去抖，使用状态机处理按键这部分最先是在马潮老师的《AVR单片机嵌入式系统原理与应用实践（第2版）》中看到。很新颖，照搬着用到了我的5*5按键上，立马感受到了不同，性能提升很多。</p>
+<p>　　将按键扫描大致的分为扫描是否按下、确认按下、等待松手等三个基本状态，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   switch(key_state)</span><br><span class="line">   &#123;</span><br><span class="line">case KEY_STATE0:</span><br><span class="line">	//扫描按键</span><br><span class="line">	break;</span><br><span class="line">case KEY_STATE1:</span><br><span class="line">	//确定检测结果是否和上次一致</span><br><span class="line">	break;				</span><br><span class="line">case KEY_STATE4:</span><br><span class="line">	//确认按键是否松开</span><br><span class="line">	break;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><br>　　程序根据需要定时10ms扫描一次。<br>　　第一状态时，跟平时我们使用的按键扫描法基本相同，置其中一行为0，检测列状态。<br>　　因为我的按键IO分布零落，于是在采值时我采用了先综合结果再比较的方法</p>
+<pre><code>`#define KV_STATUS_TEMP ((KV1&amp;0xff)&lt;&lt;7|(KV2&amp;0xff)&lt;&lt;6|(KV3&amp;0xff)&lt;&lt;5|(KV4&amp;0xff)&lt;&lt;4|(KV5&amp;0xff)&lt;&lt;3)//用于计算列状态`
+</code></pre><p>　　这样就可以直接通过IO口状态直接对比键码了。<br>　　一旦发现上述变量发生变化，立马跳转到第二状态，因为函数10ms执行一次，这基本上可以当作去抖了（实际应用时，需要多次去抖确认）。这时候确认是否真的有按键按下，且跟之前检测结果相同。若相同则处理按键事件，返回键值什么的。然后跳转到第三状态，检测是否恢复正常无按键按下状态。否则保持，是则跳转回第一状态，依次循环。<br>　　原理大概就是这样，很简单，但是很巧妙。于是在这个基础上，我又在C#上尝试了一下。一个需求是这样的：<br>    检测灯具是否连接，若连接，巡检灯具状态和故障，变换灯具指示方向。操作完毕后等待断开连接，然后又进入检测连接状态。<br>    很相似有木有，于是很轻松的就做出了如下的程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">void Timer3Tick(object sender, EventArgs e)</span><br><span class="line">	&#123;</span><br><span class="line">			switch(Redo_Test_Status)</span><br><span class="line">			&#123;</span><br><span class="line">				case 0:	//默认状态  一直寻址  若有回复则跳转到状态1 否则保持</span><br><span class="line">					Rec_Clean();</span><br><span class="line">					Seek_Addr();						</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					Redo_Test_Count = 0;</span><br><span class="line">					timer3.Interval = 500;</span><br><span class="line">					Text_Box_Redo_Test.ForeColor = System.Drawing.Color.Black; </span><br><span class="line">					Text_Box_Redo_Test.Text = &quot;等待连接\r\n&quot;;</span><br><span class="line">					break;</span><br><span class="line">				case 1:</span><br><span class="line">					if(Ack_Flag == 0 )</span><br><span class="line">					&#123;</span><br><span class="line">						Redo_Test_Status ++;</span><br><span class="line">						Lamp_Test_Count ++;</span><br><span class="line">					&#125;</span><br><span class="line">					else</span><br><span class="line">						Redo_Test_Status --;</span><br><span class="line">					break;</span><br><span class="line">				case 2:	//巡检</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;正在巡检：&quot;;</span><br><span class="line">					Rec_Clean();</span><br><span class="line">					Get_Status();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					timer3.Interval = 150;		</span><br><span class="line">					break;</span><br><span class="line">				case 3:	//闪灯</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;全灭\r\n&quot;;</span><br><span class="line">					All_Off();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 4:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 5:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 6:</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;左向\r\n&quot;;</span><br><span class="line">					Left_On();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 7:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 8:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 9:</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;右向\r\n&quot;;</span><br><span class="line">					Right_On();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 10:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 11:</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 12:</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;全亮\r\n&quot;;</span><br><span class="line">					All_On();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					Text_Box_Redo_Test.Text += &quot;检测完成，等待断开！&quot;;</span><br><span class="line">					int error1 = Text_Box_Redo_Test.Text.IndexOf(&quot;故障&quot;);</span><br><span class="line">					int error2 = Text_Box_Redo_Test.Text.IndexOf(&quot;失败&quot;);</span><br><span class="line">					int normal = Text_Box_Redo_Test.Text.IndexOf(&quot;终端&quot;);</span><br><span class="line">					if((error1 != -1)||(error2 != -1))</span><br><span class="line">						Text_Box_Redo_Test.ForeColor = System.Drawing.Color.Red; </span><br><span class="line">					else if(normal != -1)</span><br><span class="line">						Text_Box_Redo_Test.ForeColor = System.Drawing.Color.Green ;</span><br><span class="line">					else</span><br><span class="line">						Text_Box_Redo_Test.ForeColor = System.Drawing.Color.Red;							</span><br><span class="line">						</span><br><span class="line">					break;</span><br><span class="line">				case 13:				</span><br><span class="line">					Seek_Addr();</span><br><span class="line">					Redo_Test_Status ++;</span><br><span class="line">					break;</span><br><span class="line">				case 14:</span><br><span class="line">					if(Ack_Flag == 1)</span><br><span class="line">					&#123;</span><br><span class="line">						Redo_Test_Status = 0;</span><br><span class="line">						if(Lamp_Test_Count%10 == 0)	//处理完10个灯后自动清空一下数据</span><br><span class="line">						&#123;</span><br><span class="line">							if(CheckB_Send_Clear.Checked == true)</span><br><span class="line">							&#123;</span><br><span class="line">								RTextB_Send.Text = &quot;&quot;;</span><br><span class="line">							&#125;</span><br><span class="line">								</span><br><span class="line">							if(CheckB_Rec_Clear.Checked == true)</span><br><span class="line">							&#123;</span><br><span class="line">								RTextB_Rec.Text = &quot;&quot;;</span><br><span class="line">							&#125;	</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					else</span><br><span class="line">					&#123;</span><br><span class="line">						Redo_Test_Status --;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">                       if (Redo_Test_Count == 0)</span><br><span class="line">                       &#123;</span><br><span class="line">                           timer3.Interval = 1000;</span><br><span class="line">                           Redo_Test_Count = 1;</span><br><span class="line">						Text_Box_Count.Text = Convert.ToString(Lamp_Test_Count);</span><br><span class="line">                       &#125;</span><br><span class="line">					</span><br><span class="line">					break;</span><br><span class="line">				default: break;				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+<p>　　C#程序写的有点烂，但是见过一个满嘴面向对象，多线程的程序员，额，简直无法交流啊，我真的不懂啊，我只知道程序是给人用的，操作简单，使用方便才是硬道理。你写的程序，多一个功能就多一个按钮，满屏都是按钮，根本就不去想怎么操作怎么分类合并方便好么，偷偷的鄙视你一下下。o(╯□╰)o</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2014/09/27/try_to_use_FSM/" data-title="尝试使用状态机的思想去编程 | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/12/20/learned-Csharp1-1/" title="C# 学习总结(一)">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  C# 学习总结(一)</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/09/07/the_new_plan/"  title="新的计划">
+ <strong>NEXT:</strong><br/> 
+ <span>新的计划
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

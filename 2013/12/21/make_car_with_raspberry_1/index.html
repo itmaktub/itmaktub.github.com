@@ -1,0 +1,370 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>树莓派制作遥控小车一（测试电路控制） | 哼嘿哈嘿哈的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="itmaktub">
+    
+    <meta name="description" content="很久没写博客了，这几天忙着调试我的遥控小车，记录一下：
+硬件:　　小车底盘（含电机，车架，轮胎），电机驱动板，树莓派，杜邦线若干，usb无线网卡（实现远程控制），6v+电源（我以两块手机电池串联代替）
+软件:　　使用wiringPi库控制gpio，无线网卡传输信号，PHP调用C程序，html作界面（手机电脑均可用）
+步骤:
+1 焊接电机，安装底盘，连接驱动板，上电测试电机驱动板是否正常，我这里电压必须超过6v，所以用两块锂电池串联使用。
+  我使用GPIO0 GPIO1 GPIO2 GPIO3 作为控制端口，
+  附PIN分布图一张">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="itmaktub" />
+    <meta name="twitter:title" content="树莓派制作遥控小车一（测试电路控制） | 哼嘿哈嘿哈的博客" />
+      
+    
+    
+    <link rel="alternate" href="/" title="哼嘿哈嘿哈的博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="哼嘿哈嘿哈的博客">哼嘿哈嘿哈的博客</a></h1>
+				<h2 class="blog-motto">又一个家~</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:itmaktub.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/12/21/make_car_with_raspberry_1/" title="树莓派制作遥控小车一（测试电路控制）" itemprop="url">树莓派制作遥控小车一（测试电路控制）</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://itmaktub.com" title="itmaktub">itmaktub</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-12-21T06:28:36.000Z" itemprop="datePublished">2013-12-21</time>
+    Updated:<time datetime="2014-09-07T05:05:37.226Z" itemprop="dateModified">2014-09-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>很久没写博客了，这几天忙着调试我的遥控小车，记录一下：</p>
+<p><strong>硬件:</strong><br>　　小车底盘（含电机，车架，轮胎），电机驱动板，树莓派，杜邦线若干，usb无线网卡（实现远程控制），6v+电源（我以两块手机电池串联代替）</p>
+<p><strong>软件:</strong><br>　　使用wiringPi库控制gpio，无线网卡传输信号，PHP调用C程序，html作界面（手机电脑均可用）</p>
+<p><strong>步骤:</strong></p>
+<p>1 焊接电机，安装底盘，连接驱动板，上电测试电机驱动板是否正常，我这里电压必须超过6v，所以用两块锂电池串联使用。</p>
+<p>  我使用GPIO0 GPIO1 GPIO2 GPIO3 作为控制端口，</p>
+<p>  附PIN分布图一张</p>
+<a id="more"></a>
+<p><a href="http://bcs.duapp.com/wordpress727//blog/201312//GPIO.png" target="_blank" rel="external"><img src="http://bcs.duapp.com/wordpress727//blog/201312//GPIO.png" alt="GPIO"></a></p>
+<p>2 连接无线网络，两种思路，被控制端（树莓派）做热点或者控制端（手机、电脑、路由器）做热点。</p>
+<p>  我这里选择用手机做热点，因为这样树莓派就可以联网了（坑爹的学校上网困难啊！）</p>
+<p>3 下载并编译wiringpi库</p>
+<p> <a href="https://git.drogon.net/?p=wiringPi;a=summary" target="_blank" rel="external"> 点击这里</a>寻找最新版本，然后点击snapshot进行下载</p>
+<p>  或者<a href="https://git.drogon.net/?p=wiringPi;a=snapshot;h=f18c8f7204d6354220fd6754578b3daa43734e1b;sf=tgz" target="_blank" rel="external">点击这里直接下载</a></p>
+<p>  打开终端执行 ssh pi@192.168.137.7 登录系统，</p>
+<p>  另开终端执行 sftp pi@192.168.137.7  这是跟ftp差不多的文件传输工具</p>
+<p>  将文件传输到pi，然后</p>
+<p>  `tar xvxf wiringPi-98bcb20.tar.gz·</p>
+<p>  ·cd wiringPi-98bcb20·</p>
+<p>  ·./build //编译并安装·</p>
+<p>  pi端执行gpio -v查看是否安装成功</p>
+<p>4 pi插上无线网卡并上电，开机后用电脑连接热点rasp，</p>
+<p>  打开终端执行 ssh pi@192.168.137.7 登录系统，</p>
+<p>  另开终端执行 sftp pi@192.168.137.7  这是跟ftp差不多的文件传输工具</p>
+<p>   <code>put Destop/rasp_test.c</code>//默认发送到pi /home/pi文件夹</p>
+<p>  编译并运行测试程序，</p>
+<p>  <code>gcc rasp_test.c -o rasp_test -lwiringPi</code>  </p>
+<p>  ·sudo ./rasp_test //必须root执行`</p>
+<p>测试功能是否正常，如果没错就可以正常使用了。</p>
+<p>  附上我写的一段测试程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">rasp_test.c</span><br><span class="line"></span><br><span class="line">#include &lt;stdio .h&gt;</span><br><span class="line">#include &lt;stdlib .h&gt;</span><br><span class="line">#include &lt;stdint .h&gt;</span><br><span class="line">#include &lt;wiringpi .h&gt;</span><br><span class="line">#define PIN0 0</span><br><span class="line">#define PIN1 1</span><br><span class="line">#define PIN2 2</span><br><span class="line">#define PIN3 3</span><br><span class="line">int main (void)</span><br><span class="line">&#123;</span><br><span class="line">    int select;</span><br><span class="line">    if(wiringPiSetup () == -1)</span><br><span class="line">    exit (1) ;</span><br><span class="line">    while(1)</span><br><span class="line">    &#123;</span><br><span class="line">        pinMode (0, OUTPUT) ;</span><br><span class="line">        pinMode (1, OUTPUT) ;</span><br><span class="line">        pinMode (2, OUTPUT) ;</span><br><span class="line">        pinMode (3, OUTPUT) ;</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        printf(&quot;************************************\n&quot;);</span><br><span class="line">        printf(&quot;*          电机测试程序            *\n&quot;);</span><br><span class="line">        printf(&quot;************************************\n&quot;);</span><br><span class="line">        printf(&quot; 1 前进\n&quot;);</span><br><span class="line">        printf(&quot; 2 后退\n&quot;);</span><br><span class="line">        printf(&quot; 3 左转\n&quot;);</span><br><span class="line">        printf(&quot; 4 右转\n&quot;);</span><br><span class="line">        printf(&quot; 5 停止\n&quot;);</span><br><span class="line">        printf(&quot; 6 退出\n&quot;);</span><br><span class="line">        printf(&quot;\n请输入一个数字 : &quot;);</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;select);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        switch(select)</span><br><span class="line">        &#123;</span><br><span class="line">        case 1:</span><br><span class="line">            up();</span><br><span class="line">            break;</span><br><span class="line">        case 2:</span><br><span class="line">            down();</span><br><span class="line">            break;</span><br><span class="line">        case 3:</span><br><span class="line">           left();</span><br><span class="line">            break;</span><br><span class="line">        case 4:</span><br><span class="line">            right();</span><br><span class="line">            break;</span><br><span class="line">        case 5:</span><br><span class="line">            stop();</span><br><span class="line">            break;</span><br><span class="line">        case 6:</span><br><span class="line">            exit(0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int write(int s0,int s1,int s2,int s3)</span><br><span class="line">&#123;</span><br><span class="line">    digitalWrite (PIN0,s0);</span><br><span class="line">    digitalWrite (PIN1,s1);</span><br><span class="line">    digitalWrite (PIN2,s2);</span><br><span class="line">    digitalWrite (PIN3,s3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int up()</span><br><span class="line">&#123;</span><br><span class="line">	write (1,0,1,0);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int down()</span><br><span class="line">&#123;</span><br><span class="line">	write (0,1,0,1);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int left()</span><br><span class="line">&#123;</span><br><span class="line">	write (0,0,1,0);</span><br><span class="line">	delay (DELAY);</span><br><span class="line">	up ();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int right()</span><br><span class="line">&#123;</span><br><span class="line">	write (1,0,0,0);</span><br><span class="line">	delay (DELAY);</span><br><span class="line">	up();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int stop()</span><br><span class="line">&#123;</span><br><span class="line">	write (0,0,0,0);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>遇到的问题</strong>:<br>　　刚开始拿到驱动板，测试的时候发现会出现有时无法控制的现象，比如无法写入gpio状态，各种不正常啊，后来发现驱动板说明中有一项gnd必须共用，作为参考电压，好吧，修改电路后果然正常了</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/树莓派/">树莓派</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://itmaktub.com/2013/12/21/make_car_with_raspberry_1/" data-title="树莓派制作遥控小车一（测试电路控制） | 哼嘿哈嘿哈的博客" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/12/21/make_car_with_raspberry_2/" title="树莓派制作遥控小车二（使用php控制GPIO）">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  树莓派制作遥控小车二（使用php控制GPIO）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/11/25/csdn_blog_pc2phone/"  title="CSDN博客文章访问地址Pc&amp;Phone转换">
+ <strong>NEXT:</strong><br/> 
+ <span>CSDN博客文章访问地址Pc&amp;Phone转换
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <iframe id="sina_widget_2363006157" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2363006157&height=500&skin=wd_01&showpic=1"></iframe>
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">四月 2013</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/yanqueboy" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/itmaktub" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/itmaktub" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://itmaktub.com" target="_blank" title="itmaktub">itmaktub</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"itmaktub"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54091487-1', 'itmaktub.com');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
